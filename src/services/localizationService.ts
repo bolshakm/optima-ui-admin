@@ -1,7 +1,7 @@
 import { backendKeys } from 'common/constants';
 import BaseService from './baseService';
 import instanse from './axios/instanse';
-import { ILanguageSet } from 'common/types';
+import { LanguageSet, LanguageLow, LanguageKey } from 'common/types';
 
 class LocalizationService extends BaseService {
   constructor(
@@ -11,17 +11,25 @@ class LocalizationService extends BaseService {
     super(baseUrl);
   }
 
-  async getLanguages(): Promise<ILanguageSet> {
-    return this.handleRequest<ILanguageSet>(
+  async getLanguages(): Promise<LanguageSet> {
+    return this.handleRequest<LanguageSet>(
       this.fetchingService.get(this.getFullUrl(backendKeys.languages))
     );
   }
 
-  async getLanguagePage(): Promise<ILanguageSet> {
-    return this.handleRequest<ILanguageSet>(
-      this.fetchingService.get(this.getFullUrl(backendKeys.page))
+  async getLanguagePage({
+    page,
+    lang,
+  }: {
+    page: LanguageKey;
+    lang: LanguageLow;
+  }): Promise<LanguageSet> {
+    return this.handleRequest<LanguageSet>(
+      this.fetchingService.get(
+        this.getFullUrl(`${backendKeys.page}?page=${page}&lang=${lang}`)
+      )
     );
   }
 }
 
-export const contaminantsService = new LocalizationService();
+export const localizationService = new LocalizationService();

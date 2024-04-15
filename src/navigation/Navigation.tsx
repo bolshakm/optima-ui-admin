@@ -13,13 +13,13 @@ export const Navigation = () => (
       />
     </Route>
     <Route path={routerKeys.auth}>
+      <Route path={routerKeys.login} element={<LoginPage />} />
+      <Route path={routerKeys.registration} element={<RegistrationPage />} />
+      <Route path={routerKeys.forgotPassword} element={<ForgotPage />} />
       <Route
         index={true}
         element={<Navigate to={routerKeys.login} replace={true} />}
       />
-      <Route path={routerKeys.login} element={<LoginPage />} />
-      <Route path={routerKeys.registration} element={<RegistrationPage />} />
-      <Route path={routerKeys.forgotPassword} element={<ForgotPage />} />
     </Route>
     <Route
       path={routerKeys.any}

@@ -6,7 +6,8 @@
   font: inherit;
   vertical-align: baseline;
   box-sizing: border-box;
-	font-family: I;
+  font-family: 'Inter', sans-serif;
+  font-optical-sizing: auto;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -25,6 +26,8 @@ section {
 
 body {
   line-height: 1;
+  font-weight: 400;
+  font-style: normal;
 }
 
 ol,
@@ -45,6 +48,14 @@ q:after {
   content: none;
 }
 
+a {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+  color: inherit;
+}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -60,14 +71,30 @@ table {
 }
 
 .container {
-	width: 100%;
-	max-width: 1245px;
-	padding: 0 15px;
+  width: 100%;
+  max-width: 1245px;
+  padding: 0 15px;
 }
 
 .auth {
-	flex-grow: 1;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-header-text {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.auth-header-link {
+  padding: 12px 13px;
+  border: 2px solid #8befca;
+  box-shadow: 0px 4px 4px 0px #00000026;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
 }

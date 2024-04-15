@@ -1,0 +1,22 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  min-width: 382px;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: Inter, sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 30.26px;
+  text-align: left;
+  margin-left: 20px;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+}

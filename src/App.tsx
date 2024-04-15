@@ -1,13 +1,11 @@
 import React from 'react';
 import { RouterProvider } from 'libraries';
-import { Navigation } from 'navigation';
+import { AppContent } from 'components';
 
 export const App = () => {
   return (
     <RouterProvider>
-      <div className='page-template'>
-        <Navigation />
-      </div>
+      <AppContent />
     </RouterProvider>
   );
 };
