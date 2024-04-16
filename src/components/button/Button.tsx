@@ -6,7 +6,7 @@ type ButtonType = 'submit' | 'button';
 
 interface IProps {
   className?: string;
-  onClick: () => void;
+  onClick?: () => void;
   text: string;
   auth?: boolean;
   green?: boolean;
