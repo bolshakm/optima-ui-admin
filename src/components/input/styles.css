@@ -22,6 +22,26 @@
   outline: none;
 }
 
+.phone-input-wrapper {
+  padding: 0;
+  height: 51.5px;
+}
+
+.react-tel-input input.phone-input.form-control {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding-left: 58px !important;
+}
+
+.react-tel-input div.phone-button {
+  border: none;
+  outline: none;
+  background-color: #fff;
+  margin-left: 14px;
+}
+
 .input.error {
   border-color: #fb0505b2;
 }

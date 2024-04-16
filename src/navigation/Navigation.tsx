@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { routerKeys } from 'common/constants';
 import { PrivateRoutes } from './PrivateRoutes';
 import { ForgotPage, LoginPage, RegistrationPage } from 'pages/auth';
+import { AdminPanel } from 'pages/adminPanel';
 
 export const Navigation = () => (
   <Routes>
@@ -10,6 +11,10 @@ export const Navigation = () => (
       <Route
         path={routerKeys.root}
         element={<Navigate to={routerKeys.admin} replace={true} />}
+      />
+      <Route
+        path={routerKeys.admin}
+        element={<AdminPanel />}
       />
     </Route>
     <Route path={routerKeys.auth}>

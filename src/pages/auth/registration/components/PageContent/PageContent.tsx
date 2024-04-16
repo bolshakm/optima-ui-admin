@@ -3,40 +3,47 @@ import styles from './styles.module.css';
 import { AuthContent, Input, Button } from 'components';
 import { useRegistrationStore } from '../../store';
 import { useFormik } from 'formik';
-import { loginSchema } from '../../shcemas';
+import { registrationSchema } from '../../shcemas';
 import { authService } from 'services';
 import { useNavigate } from 'react-router-dom';
-import { routerKeys } from 'common/constants';
+import { routerKeys, storageKeys } from 'common/constants';
+import { InputPhone } from 'components/input/PhoneInput';
 
 export const PageContent = () => {
   const navigate = useNavigate();
   const { texts } = useRegistrationStore();
 
-  const { values, touched, errors, handleChange, handleSubmit } = useFormik({
-    initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phoneNumber: '',
-      password: '',
-      confirmationPassword: '',
-    },
-    validationSchema: loginSchema,
-    validateOnBlur: true,
-    validateOnChange: true,
-    validateOnMount: true,
-    enableReinitialize: true,
-    onSubmit: (body) => {
-      authService
-        .register({ body })
-        .then(() => {
-          navigate(routerKeys.admin);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-  });
+  const { values, touched, errors, handleChange, handleSubmit, setFieldValue } =
+    useFormik({
+      initialValues: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        password: '',
+        confirmationPassword: '',
+      },
+      validationSchema: registrationSchema,
+      validateOnBlur: true,
+      validateOnChange: true,
+      validateOnMount: true,
+      enableReinitialize: true,
+      onSubmit: (body) => {
+        authService
+          .register({ body })
+          .then((res) => {
+            localStorage.setItem(storageKeys.token, res.token);
+            navigate(routerKeys.admin);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+    });
+
+  const handleUpdatePhoneNumber = (value: string) => {
+    setFieldValue('phoneNumber', value, true);
+  };
 
   return (
     <div className={styles.content}>
@@ -58,10 +65,9 @@ export const PageContent = () => {
                 labelText={texts['registration.last.name']}
                 error={Boolean(touched.lastName && errors.lastName)}
               />
-              <Input
-                name='phoneNumber'
+              <InputPhone
                 value={values.phoneNumber}
-                onChange={handleChange}
+                onChange={handleUpdatePhoneNumber}
                 labelText={texts['registration.phone.number']}
                 error={Boolean(touched.phoneNumber && errors.phoneNumber)}
               />
@@ -84,7 +90,9 @@ export const PageContent = () => {
                 value={values.confirmationPassword}
                 onChange={handleChange}
                 labelText={texts['registration.confirm.password']}
-                error={Boolean(touched.confirmationPassword && errors.confirmationPassword)}
+                error={Boolean(
+                  touched.confirmationPassword && errors.confirmationPassword
+                )}
               />
             </div>
             <div className={styles.buttons}>

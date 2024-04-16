@@ -1,38 +1,37 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 import './styles.css';
 
-type ImputType = 'text' | 'number';
-
 interface IProps {
-  name: string;
   value: string;
-  onChange: (e: React.ChangeEvent<any>) => void;
-  requared?: boolean;
+  onChange: (value: string) => void;
   labelText?: string;
   error?: boolean;
-  type?: ImputType;
   errorText?: string;
 }
 
-export const Input: FC<IProps> = ({
-  name,
+export const InputPhone: FC<IProps> = ({
   value,
   onChange,
   labelText = null,
   error = false,
-  type = 'text',
   errorText = '',
 }) => {
   return (
     <label className='label'>
       {labelText && <span className='labelText'>{labelText}</span>}
-      <input
-        name={name}
+      <PhoneInput
+        country='es'
+        regions={['europe']}
         value={value}
         onChange={onChange}
-        type={type}
-        className={classNames('input', { 'error': error })}
+        containerClass={classNames('input', 'phone-input-wrapper', { 'error': error })}
+        inputClass='phone-input'
+        buttonClass='phone-button'
+        placeholder=''
+
       />
       {errorText && <span className='label-error'>{errorText}</span>}
     </label>

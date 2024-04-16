@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import { loginSchema } from '../../shcemas';
 import { authService } from 'services';
 import { useNavigate } from 'react-router-dom';
-import { routerKeys } from 'common/constants';
+import { routerKeys, storageKeys } from 'common/constants';
 
 export const PageContent = () => {
   const navigate = useNavigate();
@@ -25,7 +25,8 @@ export const PageContent = () => {
     onSubmit: (body) => {
       authService
         .login({ body })
-        .then(() => {
+        .then((res) => {
+          localStorage.setItem(storageKeys.token, res.token);
           navigate(routerKeys.admin);
         })
         .catch((err) => {
@@ -34,8 +35,8 @@ export const PageContent = () => {
     },
   });
 
-  const handleNavigateToRegisterPage = () => {
-    navigate(`/${routerKeys.auth}/${routerKeys.registration}`);
+  const handleNavigateToForgetPage = () => {
+    navigate(`/${routerKeys.auth}/${routerKeys.forgotPassword}`);
   };
 
   return (
@@ -62,14 +63,13 @@ export const PageContent = () => {
             <div className={styles.buttons}>
               <Button
                 text={texts['login.log.in.button']}
-                onClick={() => {}}
                 auth={true}
                 green={true}
                 type='submit'
               />
               <Button
                 text={texts['login.forgot.a.password.button']}
-                onClick={handleNavigateToRegisterPage}
+                onClick={handleNavigateToForgetPage}
                 auth={true}
               />
             </div>
