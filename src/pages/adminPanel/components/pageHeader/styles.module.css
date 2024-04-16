@@ -1,0 +1,77 @@
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  padding: 16px 0 10px;
+  background-color: #010101bf;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topText {
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.topText.bold {
+  font-weight: 800;
+}
+
+.bottom {
+  padding: 13px 0 11px;
+  background-color: #ffffff;
+  /* border: 1px solid #00000054; */
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.restaurant {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.bottomContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+button.headerButton {
+  height: 38px;
+  max-width: max-content;
+  min-width: auto;
+  font-weight: 400;
+  padding-left: 12px;
+  padding-right: 12px;
+  transition: all 0.3s linear;
+}
+
+button.headerButton:hover {
+  border-color: #8befca;
+}
+
+button.headerButton ul {
+  min-width: auto;
+}
+
+button.headerButton.modifySvg svg:last-child {
+  height: 24px;
+  margin-left: -10px;
+}
+
+button.pr0 {
+  padding-right: 2px;
+}

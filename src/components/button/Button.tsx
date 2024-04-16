@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import styles from './styles.module.css';
 import classNames from 'classnames';
 
@@ -11,15 +11,19 @@ interface IProps {
   auth?: boolean;
   green?: boolean;
   type?: ButtonType;
+  frontIcon?: ReactNode;
+  endIcon?: ReactNode;
 }
 
 export const Button: FC<IProps> = ({
   className = '',
-  onClick,
+  onClick = () => {},
   text,
   auth = false,
   green = false,
   type = 'button',
+  frontIcon = null,
+  endIcon = null,
 }) => {
   return (
     <button
@@ -31,7 +35,9 @@ export const Button: FC<IProps> = ({
       onClick={onClick}
       type={type}
     >
+      {frontIcon}
       {text}
+      {endIcon}
     </button>
   );
 };

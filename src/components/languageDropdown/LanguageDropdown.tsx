@@ -5,12 +5,17 @@ import { LanguageSet, Language, LanguageLow } from 'common/types';
 import { localizationService } from 'services';
 import { useLanguageStore } from 'store';
 import { languagesMap } from 'common/constants';
+import classNames from 'classnames';
 
 interface IProps {
   isSmall?: boolean;
+  className?: string;
 }
 
-export const LanguageDropdown: FC<IProps> = ({ isSmall = false }) => {
+export const LanguageDropdown: FC<IProps> = ({
+  isSmall = false,
+  className,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [languages, setLanguages] = useState<LanguageSet>({} as LanguageSet);
   const { currentLang, setCurrentLang } = useLanguageStore();
@@ -48,13 +53,17 @@ export const LanguageDropdown: FC<IProps> = ({ isSmall = false }) => {
   };
 
   const generateText = (key: LanguageLow) => {
-    if (isSmall) return key;
+    if (isSmall) return key.toLocaleUpperCase();
 
     return languagesMap[key];
   };
 
   return (
-    <button className={styles.button} onClick={toggleIsExpanded} ref={dropdownRef}>
+    <button
+      className={classNames(styles.button, className)}
+      onClick={toggleIsExpanded}
+      ref={dropdownRef}
+    >
       <div className={styles.text}>
         {generateText(currentLang)}
         <ExpandMoreIcon
