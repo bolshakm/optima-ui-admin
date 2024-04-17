@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import './styles.css';
+import { InputLabel } from './InputLabel';
 
 interface IProps {
   value: string;
@@ -15,25 +16,25 @@ interface IProps {
 export const InputPhone: FC<IProps> = ({
   value,
   onChange,
-  labelText = null,
+  labelText = '',
   error = false,
   errorText = '',
 }) => {
   return (
-    <label className='label'>
-      {labelText && <span className='labelText'>{labelText}</span>}
+    <InputLabel errorText={errorText} labelText={labelText}>
       <PhoneInput
         country='es'
         regions={['europe']}
         value={value}
         onChange={onChange}
-        containerClass={classNames('input', 'phone-input-wrapper', { 'error': error })}
+        containerClass={classNames('input', 'phone-input-wrapper', {
+          'error': error,
+        })}
         inputClass='phone-input'
         buttonClass='phone-button'
         placeholder=''
-
       />
       {errorText && <span className='label-error'>{errorText}</span>}
-    </label>
+    </InputLabel>
   );
 };

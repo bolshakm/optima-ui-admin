@@ -1,5 +1,15 @@
-.header {
+.page {
+  flex-grow: 1;
   display: flex;
-  justify-content: space-between;
-  
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  flex-grow: 1;
+}
+
+.sidebar {
+  width: 18%;
+  min-width: 240px;
 }
