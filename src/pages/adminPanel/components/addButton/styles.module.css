@@ -1,0 +1,28 @@
+.container {
+  padding: 7px 7px 7px 12px;
+  width: 298px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 1px solid #00000054;
+  border-radius: 5px;
+}
+
+.text {
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.button {
+  width: 34px;
+  height: 34px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #8befca;
+}
