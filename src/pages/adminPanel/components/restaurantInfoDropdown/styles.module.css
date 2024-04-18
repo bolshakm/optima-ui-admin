@@ -54,11 +54,10 @@
 
 .list.active {
   padding-top: 15px;
-  height: 100%;
+  height: max-content;
   border: 1px solid #00000054;
   border-top: none;
 }
-
 
 .item {
   transition: all 0.3s linear 0.3;
@@ -97,7 +96,7 @@
   transition: all 0.3s linear;
 }
 
-.listButton:hover svg{
+.listButton:hover svg {
   transform: rotate(-90deg) translateY(2px);
 }
 
@@ -111,4 +110,15 @@
 
 .dot.active {
   background-color: #8befca;
+}
+
+.text {
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  transition: all 0.3s linear;
+}
+
+.text.active {
+  font-weight: 700;
 }

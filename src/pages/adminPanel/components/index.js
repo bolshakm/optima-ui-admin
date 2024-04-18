@@ -5,3 +5,4 @@ export * from './createRestaurant';
 export * from './generalInfo';
 export * from './restaurantInfo';
 export * from './restaurantInfoDropdown';
+export * from './infoBlock';

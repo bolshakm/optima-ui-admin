@@ -6,7 +6,7 @@ export interface IWorkingHour {
 }
 
 export interface ICafe {
-  id: 0;
+  id: number;
   name: string;
   workingHours: IWorkingHour[];
   defLang: string;
@@ -18,4 +18,4 @@ export interface ICafe {
   languageSet: Language[];
 }
 
-export interface ICafeDto extends Omit<ICafe, 'id'> {}
+export interface ICafeDto extends Partial<ICafe> {}

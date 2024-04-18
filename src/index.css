@@ -24,6 +24,13 @@ section {
   display: block;
 }
 
+button, input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 body {
   line-height: 1;
   font-weight: 400;
@@ -67,7 +74,7 @@ table {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .container {

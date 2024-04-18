@@ -26,9 +26,13 @@
   width: 100%;
   height: 100%;
   background-color: #c5f4e1;
-  box-shadow: 0px 4px 4px 0px #00000040;
+  box-shadow: 0px 4px 4px 0px #00000026;
   transition: all 0.3s linear;
   border-radius: 0px 7px 7px 0px;
+  padding: 20px 27px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
 }
 
 .button span {
@@ -42,6 +46,17 @@
 
 .button.selected {
   left: 11px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.button.selected::after {
+  position: absolute;
+  content: '';
+  left: -11px;
+  width: 11px;
+  bottom: 0px;
+  height: 100%;
+  box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 .button.selected span {

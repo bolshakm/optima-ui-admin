@@ -17,7 +17,9 @@ export const ListItem: FC<IProps> = ({ name, navigateToBlock, isActive }) => {
           <span
             className={classNames(styles.dot, { [styles.active]: isActive })}
           />
-          <span>{name}</span>
+          <span className={classNames(styles.text, { [styles.active]: isActive })}>
+            {name}
+          </span>
         </div>
 
         <ArrowDown />

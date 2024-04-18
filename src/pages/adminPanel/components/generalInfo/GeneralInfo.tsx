@@ -38,7 +38,7 @@ export const GeneralInfo = () => {
           craeteCallback={handleToggleModal}
         />
         <div className={styles.bottom}>
-          {restaurant && <RestaurantInfo restaurant={restaurant} />}
+          {restaurant && <RestaurantInfo restaurant={restaurant} toCreate={true} />}
         </div>
       </div>
     </div>

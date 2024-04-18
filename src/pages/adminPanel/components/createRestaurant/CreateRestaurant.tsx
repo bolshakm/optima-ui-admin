@@ -3,14 +3,14 @@ import styles from './styles.module.css';
 import { Button } from 'components/button';
 import { useAdminStore } from 'pages/adminPanel/store';
 import classNames from 'classnames';
-import { cafeData } from 'common/data';
+import { cafeService } from 'services/cafeService';
 
 interface IProps {
   onClose: () => void;
 }
 
 export const CreateRestaurant: FC<IProps> = ({ onClose }) => {
-  const { texts, setRestaurant } = useAdminStore();
+  const { texts, addRestaurantToList } = useAdminStore();
   const [name, setName] = useState('');
   const [error, setError] = useState(false);
 
@@ -19,8 +19,8 @@ export const CreateRestaurant: FC<IProps> = ({ onClose }) => {
       setError(true);
       return;
     }
-    
-    setRestaurant({ ...cafeData, name });
+
+    cafeService.create({ body: { name } }).then(addRestaurantToList);
     onClose();
   };
 

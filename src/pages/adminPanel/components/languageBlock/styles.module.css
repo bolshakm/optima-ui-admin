@@ -1,0 +1,85 @@
+div.language {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top: 1px solid #0000001a;
+}
+
+.language h5 {
+  display: none;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  border: 1px solid #00000054;
+  border-radius: 5px 5px 0 0;
+  border-bottom: none;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 150px;
+  max-width: 150px;
+}
+
+.left span,
+.left .input {
+  flex-grow: 1;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  width: 130px;
+}
+
+.left .input {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+}
+
+.pen {
+  cursor: pointer;
+}
+
+.error path {
+  fill: #fb0505b2;
+}
+
+.wrapper {
+  width: 50%;
+}
+
+.select {
+  width: 70%;
+  height: 30px;
+  border: 1px solid #00000054;
+  box-shadow: none;
+}
+
+.select.error {
+  color: #fb0505b2;
+}
+
+.title {
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}

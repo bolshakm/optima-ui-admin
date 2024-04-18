@@ -3,3 +3,11 @@
   display: flex;
   gap: 22px;
 }
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 11px;
+  margin-bottom: 50px;
+}
