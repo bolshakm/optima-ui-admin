@@ -1,34 +1,114 @@
-.content {
+.dropdown {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
 
-.title {
-  font-family: Inter, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  margin-bottom: 21px;
-}
-
-.input {
-  font-family: Inter, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  margin-bottom: 34px;
-  height: 30px;
+.button {
+  width: 298px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 13px;
+  background: #fff;
+  transition: all 0.3s linear;
   border: 1px solid #00000054;
-  box-shadow: none;
-  width: 290px;
+  border-radius: 5px;
 }
 
-.input::placeholder {
-  color: #00000080;
+.button:hover {
+  border-color: #8befca;
 }
 
-.buttons {
+.button svg {
+  width: 26px;
+  height: 26px;
+}
+
+.button span {
+  font-family: Inter, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.button.active {
+  background: #c5f4e1;
+}
+
+.button.active:hover {
+  border-color: #00000054;
+}
+
+.list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 0 5px 5px;
+  padding-top: 0;
+  border: none;
+  overflow: hidden;
+  transform: translateY(-4px);
+  height: 0;
+  transition: all 0.3s linear;
+}
+
+.list.active {
+  padding-top: 15px;
+  height: 100%;
+  border: 1px solid #00000054;
+  border-top: none;
+}
+
+
+.item {
+  transition: all 0.3s linear 0.3;
+  opacity: 0;
+  width: 100%;
+}
+
+.list.active .item {
+  opacity: 1;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.listButton {
+  cursor: pointer;
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 13px;
+  justify-content: space-between;
+  padding: 7px 13px;
+  background-color: #fff;
+  gap: 12px;
+  border-bottom: 1px solid #0000001a;
+}
+
+.listButton svg {
+  width: 24px;
+  height: 26px;
+  justify-self: flex-end;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  transition: all 0.3s linear;
+}
+
+.listButton:hover svg{
+  transform: rotate(-90deg) translateY(2px);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: all 0.3s linear;
+}
+
+.dot.active {
+  background-color: #8befca;
 }

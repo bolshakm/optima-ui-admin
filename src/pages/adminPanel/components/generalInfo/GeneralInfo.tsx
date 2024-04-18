@@ -3,10 +3,10 @@ import styles from './styles.module.css';
 import { useAdminStore } from 'pages/adminPanel/store';
 import { AddButton } from '../addButton';
 import { ModalTemplate } from 'components';
-import { CreateRestaurant } from '../createRestaureant';
+import { CreateRestaurant, RestaurantInfo } from '..';
 
 export const GeneralInfo = () => {
-  const { texts } = useAdminStore();
+  const { texts, restaurant } = useAdminStore();
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleToggleModal = () => {
@@ -38,7 +38,7 @@ export const GeneralInfo = () => {
           craeteCallback={handleToggleModal}
         />
         <div className={styles.bottom}>
-          <></>
+          {restaurant && <RestaurantInfo restaurant={restaurant} />}
         </div>
       </div>
     </div>

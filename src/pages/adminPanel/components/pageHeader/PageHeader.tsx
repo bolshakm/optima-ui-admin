@@ -12,7 +12,7 @@ import { ReactComponent as Phone } from 'assets/phone.svg';
 import { LanguageDropdown } from 'components';
 
 export const PageHeader = () => {
-  const { texts, restourantName } = useAdminStore();
+  const { texts, restaurantName } = useAdminStore();
 
   return (
     <div className={styles.header}>
@@ -33,7 +33,7 @@ export const PageHeader = () => {
       <div className={styles.bottom}>
         <div className='container'>
           <div className={styles.headerContent}>
-            <h6 className={styles.restaurant}>{restourantName}</h6>
+            <h6 className={styles.restaurant}>{restaurantName}</h6>
             <div className={styles.bottomContent}>
               <Button
                 text={texts['admin.view.as.client.button']}

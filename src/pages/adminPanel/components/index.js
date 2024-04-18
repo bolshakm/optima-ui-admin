@@ -1,7 +1,7 @@
 export * from './pageHeader';
 export * from './sidebar';
 export * from './addButton';
-export * from './createRestaureant';
+export * from './createRestaurant';
 export * from './generalInfo';
+export * from './restaurantInfo';
 export * from './restaurantInfoDropdown';
-

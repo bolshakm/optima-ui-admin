@@ -1,21 +1,58 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import styles from './styles.module.css';
-import { Button } from 'components/button';
 import { useAdminStore } from 'pages/adminPanel/store';
+import { ReactComponent as ArrowDown } from 'assets/expand_more.svg';
+import { ListItem } from './ListItem';
 import classNames from 'classnames';
 
 interface IProps {
-  selectedTab: string;
-  setSelectedTab: (key: string) => void;
   name: string;
+  navigateToBlock: (key: string) => void;
+  isExpanded: boolean;
+  setIsExpanded: () => void;
 }
 
-export const RestaurantInfoDropdown: FC<IProps> = ({ selectedTab, setSelectedTab, name }) => {
+export const RestaurantInfoDropdown: FC<IProps> = ({
+  name,
+  navigateToBlock,
+  isExpanded,
+  setIsExpanded,
+}) => {
   const { texts } = useAdminStore();
 
-
   return (
-    <div className={styles.content}>
+    <div className={styles.dropdown}>
+      <button
+        className={classNames(styles.button, { [styles.active]: isExpanded })}
+        onClick={setIsExpanded}
+      >
+        {name}
+        <ArrowDown />
+      </button>
+      <ul
+        className={classNames(styles.list, { [styles.active]: isExpanded })}
+      >
+        <ListItem
+          name={texts['admin.default.language']}
+          navigateToBlock={() => navigateToBlock('defaultLanguage')}
+          isActive={true}
+        />
+        <ListItem
+          name={texts['admin.working.hours']}
+          navigateToBlock={() => navigateToBlock('workingHours')}
+          isActive={false}
+        />
+        <ListItem
+          name={texts['admin.social.media']}
+          navigateToBlock={() => navigateToBlock('socialMedia')}
+          isActive={false}
+        />
+        <ListItem
+          name={texts['admin.general.banner']}
+          navigateToBlock={() => navigateToBlock('generalBanner')}
+          isActive={false}
+        />
+      </ul>
     </div>
   );
 };
