@@ -34,8 +34,8 @@ div.language {
   display: flex;
   align-items: center;
   gap: 6px;
-  width: 150px;
-  max-width: 150px;
+  min-width: 150px;
+  width: max-content;
 }
 
 .left span,
@@ -44,7 +44,7 @@ div.language {
   font-family: Inter, sans-serif;
   font-size: 14px;
   font-weight: 600;
-  width: 130px;
+  max-width: 100%;
 }
 
 .left .input {

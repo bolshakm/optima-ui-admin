@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
 import { useAdminStore } from 'pages/adminPanel/store';
-import { AddButton } from '../addButton';
+import { AddButton } from '../../addButton';
 import { ModalTemplate } from 'components';
-import { CreateRestaurant, RestaurantInfo } from '..';
+import { CreateRestaurant, RestaurantInfo } from '.';
 
 export const GeneralInfo = () => {
-  const { texts, restaurant } = useAdminStore();
+  const { texts, restaurantsList } = useAdminStore();
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleToggleModal = () => {
@@ -29,7 +29,7 @@ export const GeneralInfo = () => {
     <div className='info'>
       {isOpenModal && (
         <ModalTemplate onClose={handleToggleModal}>
-          <CreateRestaurant onClose={handleToggleModal}/>
+          <CreateRestaurant onClose={handleToggleModal} />
         </ModalTemplate>
       )}
       <div className={styles.content}>
@@ -38,7 +38,9 @@ export const GeneralInfo = () => {
           craeteCallback={handleToggleModal}
         />
         <div className={styles.bottom}>
-          {restaurant && <RestaurantInfo restaurant={restaurant} toCreate={true} />}
+          {restaurantsList.map((restaurant) => (
+            <RestaurantInfo restaurant={restaurant} key={restaurant.id} />
+          ))}
         </div>
       </div>
     </div>

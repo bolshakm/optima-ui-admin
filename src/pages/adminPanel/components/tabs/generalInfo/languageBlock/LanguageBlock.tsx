@@ -2,40 +2,41 @@ import React, { FC, useMemo, useState } from 'react';
 import styles from './styles.module.css';
 import { useAdminStore } from 'pages/adminPanel/store';
 import { InfoBlock } from '../infoBlock';
-import { ICafeDto } from 'common/types';
+import { ICafe } from 'common/types';
 import { ReactComponent as Trash } from 'assets/trash.svg';
 import { ReactComponent as Pen } from 'assets/pen.svg';
-
 import { cafeService } from 'services/cafeService';
 import classNames from 'classnames';
-import { FormikErrors, FormikTouched } from 'formik';
+import { useFormik } from 'formik';
+import { createSchema } from 'pages/adminPanel/shcemas';
 
 interface IProps {
-  restaurantId?: number;
-  values: ICafeDto;
-  onChange: (e: React.ChangeEvent<any>) => void;
-  touched: FormikTouched<ICafeDto>;
-  errors: FormikErrors<ICafeDto>;
+  restaurant: ICafe;
 }
 
-export const LanguageBlock: FC<IProps> = ({
-  restaurantId,
-  values,
-  touched,
-  errors,
-  onChange,
-}) => {
-  const { texts, setRestaurant, removeRestaurantFromList } = useAdminStore();
+export const LanguageBlock: FC<IProps> = ({ restaurant }) => {
+  const { texts, updateRestaurant, removeRestaurantFromList } = useAdminStore();
   const [editMode, setEditMode] = useState(false);
 
+  const { values, touched, errors, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      name: restaurant.name,
+      defLang: restaurant.defLang,
+    },
+    validationSchema: createSchema,
+    validateOnBlur: true,
+    validateOnChange: true,
+    validateOnMount: true,
+    enableReinitialize: true,
+    onSubmit: (body) => {
+      cafeService.update({ id: restaurant.id, body }).then(updateRestaurant);
+    },
+  });
+
   const handleRemove = () => {
-    if (restaurantId) {
-      cafeService
-        .remove({ id: restaurantId })
-        .then(() => removeRestaurantFromList(restaurantId));
-    } else {
-      setRestaurant(null);
-    }
+    cafeService
+      .remove({ id: restaurant.id })
+      .then(() => removeRestaurantFromList(restaurant.id));
   };
 
   const handleToggleMode = () => {
@@ -55,7 +56,7 @@ export const LanguageBlock: FC<IProps> = ({
             <input
               name='name'
               value={values.name}
-              onChange={onChange}
+              onChange={handleChange}
               className={classNames(styles.input)}
               autoFocus
             />
@@ -73,12 +74,17 @@ export const LanguageBlock: FC<IProps> = ({
           <Trash />
         </button>
       </div>
-      <InfoBlock title='' className={styles.language}>
+      <InfoBlock
+        title=''
+        className={styles.language}
+        handleSubmit={handleSubmit}
+      >
         <h6 className={styles.title}>{texts['admin.default.language']}</h6>
         <div className={styles.wrapper}>
           <select
             value={values.defLang}
-            onChange={onChange}
+            name='defLang'
+            onChange={handleChange}
             className={classNames('input', styles.select, {
               'error': Boolean(touched.defLang && errors.defLang),
             })}

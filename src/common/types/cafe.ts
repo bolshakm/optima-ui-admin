@@ -18,4 +18,8 @@ export interface ICafe {
   languageSet: Language[];
 }
 
-export interface ICafeDto extends Partial<ICafe> {}
+export interface ICreateCafeDto extends Partial<ICafe> {
+  name: string;
+}
+
+export interface IUpdateCafeDto extends Partial<ICafe> {}

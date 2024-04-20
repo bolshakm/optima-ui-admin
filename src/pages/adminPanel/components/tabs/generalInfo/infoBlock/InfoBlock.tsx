@@ -8,12 +8,14 @@ interface IProps {
   title: string;
   children: ReactNode;
   className?: string;
+  handleSubmit: (e?: React.FormEvent<HTMLFormElement> | undefined) => void
 }
 
 export const InfoBlock: FC<IProps> = ({
   title,
   children,
   className = '',
+  handleSubmit,
 }) => {
   const { texts } = useAdminStore();
 
@@ -25,7 +27,7 @@ export const InfoBlock: FC<IProps> = ({
         <Button
           green={true}
           text={texts['admin.save.changes.button']}
-          type='submit'
+          onClick={handleSubmit}
         />
       </div>
     </div>

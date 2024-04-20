@@ -1,13 +1,13 @@
 .block {
   display: flex;
   flex-wrap: wrap;
-  row-gap: 4px;
+  row-gap: 6px;
 }
 
 .label {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   width: 50%;
 }
 

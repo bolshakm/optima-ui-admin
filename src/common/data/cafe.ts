@@ -1,13 +1,14 @@
-import { ICafeDto } from 'common/types';
+import { ICafe, IWorkingHour, Language } from 'common/types';
 
-export const cafeData: ICafeDto = {
-  name: '',
-  workingHours: [],
+export const cafeData: ICafe = {
+  id: 1,
+  name: 'RESTAURANT_ONE',
+  workingHours: [] as IWorkingHour[],
   defLang: '',
   facebook: '',
   instagram: '',
   tripAdvisor: '',
   googleReview: '',
   bannerUrl: '',
-  languageSet: [],
+  languageSet: [] as Language[],
 };

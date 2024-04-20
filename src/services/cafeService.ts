@@ -1,7 +1,7 @@
 import { backendAdminKeys } from 'common/constants';
 import BaseService from './baseService';
 import instanse from './axios/instanse';
-import { ICafe, ICafeDto } from 'common/types';
+import { ICafe, ICreateCafeDto, IUpdateCafeDto } from 'common/types';
 
 class CafeService extends BaseService {
   constructor(
@@ -24,18 +24,22 @@ class CafeService extends BaseService {
   }
 
   async getMany(): Promise<ICafe[]> {
-    return this.handleRequest<ICafe[]>(
-      this.fetchingService.get(this.baseUrl)
-    );
+    return this.handleRequest<ICafe[]>(this.fetchingService.get(this.baseUrl));
   }
 
-  async create({ body }: { body: ICafeDto }): Promise<ICafe> {
+  async create({ body }: { body: ICreateCafeDto }): Promise<ICafe> {
     return this.handleRequest<ICafe>(
       this.fetchingService.post(this.baseUrl, body)
     );
   }
 
-  async update({ id,  body }: { id: number, body: ICafeDto }): Promise<ICafe> {
+  async update({
+    id,
+    body,
+  }: {
+    id: number;
+    body: IUpdateCafeDto;
+  }): Promise<ICafe> {
     return this.handleRequest<ICafe>(
       this.fetchingService.put(this.getFullUrl(`/${id}`), body)
     );

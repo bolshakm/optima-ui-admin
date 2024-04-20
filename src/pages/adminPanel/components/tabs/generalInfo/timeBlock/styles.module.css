@@ -1,0 +1,19 @@
+.block {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 6px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 50%;
+}
+
+.input {
+  width: 70%;
+  height: 30px;
+  border: 1px solid #00000054;
+  box-shadow: none;
+}

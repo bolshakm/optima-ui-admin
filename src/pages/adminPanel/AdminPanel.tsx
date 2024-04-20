@@ -4,7 +4,7 @@ import { useAdminStore } from './store';
 import { localizationService } from 'services';
 import { PageHeader, Sidebar } from './components';
 import styles from './styles.module.css';
-import { GeneralInfo } from './components/generalInfo';
+import { TabsContent } from './components/tabs';
 
 export const AdminPanel = () => {
   const { currentLang: lang } = useLanguageStore();
@@ -23,7 +23,7 @@ export const AdminPanel = () => {
           <Sidebar selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
         </div>
         <div className={styles.inner}>
-          <GeneralInfo />
+          <TabsContent selectedTab={selectedTab} />
         </div>
       </div>
     </div>
