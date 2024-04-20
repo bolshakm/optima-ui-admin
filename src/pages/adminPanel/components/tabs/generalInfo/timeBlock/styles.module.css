@@ -17,3 +17,48 @@
   border: 1px solid #00000054;
   box-shadow: none;
 }
+
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.day {
+  width: 10%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.periods {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.period {
+  padding: 10px;
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.33);
+  border-radius: 5px;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  outline: none;
+}
+
+select.period::-ms-expand {
+  display: none;
+}
+
+.button {
+  width: 100%;
+  max-width: 208px;
+  height: 40px;
+  border: 1px solid #8befca;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 17px;
+}

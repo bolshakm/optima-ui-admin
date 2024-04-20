@@ -4,13 +4,13 @@ import { create } from 'zustand';
 
 export interface IState {
   texts: ITexts;
-  restaurantName: string;
+  selectedRestaurant: ICafe | null;
   restaurantsList: ICafe[];
 }
 
 export interface IAction {
   setTexts: (value: ITexts) => void;
-  setRestaurantName: (value: string) => void;
+  setSelectedRestaurant: (value: ICafe) => void;
   setRestaurantsList: (value: ICafe[]) => void;
   addRestaurantToList: (value: ICafe) => void;
   removeRestaurantFromList: (id: number) => void;
@@ -19,10 +19,14 @@ export interface IAction {
 
 export const useAdminStore = create<IState & IAction>((set) => ({
   texts: {} as ITexts,
-  restaurantName: '',
+  selectedRestaurant: null,
   restaurantsList: [cafeData],
   setTexts: (texts) => set(() => ({ texts })),
-  setRestaurantName: (restaurantName) => set(() => ({ restaurantName })),
+  setSelectedRestaurant: (restaurant) =>
+    set((state) => ({
+      selectedRestaurant:
+        state.selectedRestaurant?.id === restaurant.id ? null : restaurant,
+    })),
   setRestaurantsList: (restaurantsList) => set(() => ({ restaurantsList })),
   addRestaurantToList: (restaurant) =>
     set((data) => ({

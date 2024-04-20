@@ -5,3 +5,4 @@ export * from './authContent';
 export * from './input';
 export * from './button';
 export * from './modalTemplate';
+export * from './checkBox';

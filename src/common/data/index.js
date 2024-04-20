@@ -1,1 +1,2 @@
-export * from './cafe'
+export * from './cafe';
+export * from './days';
