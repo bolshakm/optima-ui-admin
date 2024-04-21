@@ -54,6 +54,7 @@ export const PageContent = () => {
               />
               <Input
                 name='password'
+                type='password'
                 value={values.password}
                 onChange={handleChange}
                 labelText={texts['login.password']}

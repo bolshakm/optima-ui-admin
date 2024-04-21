@@ -1,6 +1,6 @@
 export interface DayOfWeek {
   selected: boolean;
-  timePeriods: string;
+  timePeriods: string[];
 }
 
 export interface WeekDays {

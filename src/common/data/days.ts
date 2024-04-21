@@ -3,30 +3,30 @@ import { WeekDays } from 'common/types';
 export const weekDays: WeekDays = {
   Mon: {
     selected: false,
-    timePeriods: '',
+    timePeriods: ['00:00-00:00'],
   },
   Tue: {
     selected: false,
-    timePeriods: '',
+    timePeriods: ['00:00-00:00'],
   },
   Wed: {
     selected: false,
-    timePeriods: '',
+    timePeriods: ['00:00-00:00'],
   },
   Thu: {
     selected: false,
-    timePeriods: '',
+    timePeriods: ['00:00-00:00'],
   },
   Fri: {
     selected: false,
-    timePeriods: '',
+    timePeriods: ['00:00-00:00'],
   },
   Sat: {
     selected: false,
-    timePeriods: '',
+    timePeriods: ['00:00-00:00'],
   },
   Sun: {
     selected: false,
-    timePeriods: '',
+    timePeriods: ['00:00-00:00'],
   },
 };

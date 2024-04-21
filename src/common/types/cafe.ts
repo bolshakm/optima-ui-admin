@@ -22,4 +22,6 @@ export interface ICreateCafeDto extends Partial<ICafe> {
   name: string;
 }
 
-export interface IUpdateCafeDto extends Partial<ICafe> {}
+export interface IUpdateCafeDto extends Partial<ICafe> {
+  id: number;
+}

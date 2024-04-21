@@ -34,14 +34,12 @@ class CafeService extends BaseService {
   }
 
   async update({
-    id,
     body,
   }: {
-    id: number;
     body: IUpdateCafeDto;
   }): Promise<ICafe> {
     return this.handleRequest<ICafe>(
-      this.fetchingService.put(this.getFullUrl(`/${id}`), body)
+      this.fetchingService.put(this.baseUrl, body)
     );
   }
 }

@@ -19,7 +19,7 @@ export const LanguageDropdown: FC<IProps> = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const [languages, setLanguages] = useState<LanguageSet>({} as LanguageSet);
   const { currentLang, setCurrentLang } = useLanguageStore();
-  const dropdownRef = useRef<HTMLButtonElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (
@@ -59,7 +59,7 @@ export const LanguageDropdown: FC<IProps> = ({
   };
 
   return (
-    <button
+    <div
       className={classNames(styles.button, className)}
       onClick={toggleIsExpanded}
       ref={dropdownRef}
@@ -88,6 +88,6 @@ export const LanguageDropdown: FC<IProps> = ({
           );
         })}
       </ul>
-    </button>
+    </div>
   );
 };

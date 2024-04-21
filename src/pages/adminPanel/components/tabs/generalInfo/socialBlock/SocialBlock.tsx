@@ -17,9 +17,9 @@ export const SocialBlock: FC<IProps> = ({ restaurant }) => {
 
   const { values, touched, errors, handleChange, handleSubmit } = useFormik({
     initialValues: {
-      facebook: restaurant.facebook,
-      instagram: restaurant.instagram,
-      tripAdvisor: restaurant.tripAdvisor,
+      facebook: restaurant.facebook || '',
+      instagram: restaurant.instagram || '',
+      tripAdvisor: restaurant.tripAdvisor || '',
     },
     validationSchema: createSchema,
     validateOnBlur: true,
@@ -27,7 +27,7 @@ export const SocialBlock: FC<IProps> = ({ restaurant }) => {
     validateOnMount: true,
     enableReinitialize: true,
     onSubmit: (body) => {
-      cafeService.update({ id: restaurant.id, body }).then(updateRestaurant);
+      cafeService.update({ body: {...body, id: restaurant.id } }).then(updateRestaurant);
     },
   });
 

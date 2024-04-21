@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './styles.module.css';
 import { useAdminStore } from 'pages/adminPanel/store';
 import { AddButton } from '../../addButton';
 import { ModalTemplate } from 'components';
 import { CreateRestaurant, RestaurantInfo } from '.';
+import { cafeService } from 'services/cafeService';
 
 export const GeneralInfo = () => {
-  const { texts, restaurantsList } = useAdminStore();
+  const { texts, restaurantsList, setRestaurantsList } = useAdminStore();
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const buttonRef = useRef<HTMLDivElement>(null);
 
   const handleToggleModal = () => {
     if (isOpenModal) {
@@ -20,10 +22,15 @@ export const GeneralInfo = () => {
   };
 
   useEffect(() => {
+    cafeService.getMany().then(setRestaurantsList);
     return () => {
       document.body.style.overflow = '';
     };
   }, []);
+
+  const scrollToView = () => {
+    buttonRef?.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <div className='info'>
@@ -32,14 +39,18 @@ export const GeneralInfo = () => {
           <CreateRestaurant onClose={handleToggleModal} />
         </ModalTemplate>
       )}
-      <div className={styles.content}>
+      <div className={styles.content} ref={buttonRef}>
         <AddButton
           text={texts['admin.add.restaurant']}
           craeteCallback={handleToggleModal}
         />
         <div className={styles.bottom}>
           {restaurantsList.map((restaurant) => (
-            <RestaurantInfo restaurant={restaurant} key={restaurant.id} />
+            <RestaurantInfo
+              restaurant={restaurant}
+              key={restaurant.id}
+              scrollToView={scrollToView}
+            />
           ))}
         </div>
       </div>

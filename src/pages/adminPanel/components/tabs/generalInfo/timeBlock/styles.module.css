@@ -1,6 +1,6 @@
 .block {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   row-gap: 6px;
 }
 
@@ -21,22 +21,34 @@
 .row {
   display: flex;
   width: 100%;
+  max-width: 340px;
+  position: relative;
 }
 
 .day {
-  width: 10%;
+  width: 110px;
   height: 40px;
   display: flex;
   align-items: center;
+  margin-left: 5px;
 }
 
 .periods {
   display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.periodWrapper {
+  display: flex;
   align-items: center;
   gap: 13px;
+  position: relative;
 }
 
 .period {
+  width: 88px;
   padding: 10px;
   height: 40px;
   border: 1px solid rgba(0, 0, 0, 0.33);
@@ -52,13 +64,25 @@ select.period::-ms-expand {
 }
 
 .button {
+  padding: 0 10px;
   width: 100%;
-  max-width: 208px;
+  min-width: 208px;
+  width: max-content;
   height: 40px;
   border: 1px solid #8befca;
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 17px;
+  position: absolute;
+  left: 340px;
+  top: 0;
+}
+
+.remove {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: calc(100% + 17px);
+  top: 0;
 }

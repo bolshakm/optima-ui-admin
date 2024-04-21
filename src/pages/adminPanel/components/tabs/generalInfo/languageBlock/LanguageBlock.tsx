@@ -12,16 +12,17 @@ import { createSchema } from 'pages/adminPanel/shcemas';
 
 interface IProps {
   restaurant: ICafe;
+  scrollToView: () => void;
 }
 
-export const LanguageBlock: FC<IProps> = ({ restaurant }) => {
+export const LanguageBlock: FC<IProps> = ({ restaurant, scrollToView }) => {
   const { texts, updateRestaurant, removeRestaurantFromList } = useAdminStore();
   const [editMode, setEditMode] = useState(false);
 
   const { values, touched, errors, handleChange, handleSubmit } = useFormik({
     initialValues: {
-      name: restaurant.name,
-      defLang: restaurant.defLang,
+      name: restaurant.name || '',
+      defLang: restaurant.defLang || '',
     },
     validationSchema: createSchema,
     validateOnBlur: true,
@@ -29,14 +30,17 @@ export const LanguageBlock: FC<IProps> = ({ restaurant }) => {
     validateOnMount: true,
     enableReinitialize: true,
     onSubmit: (body) => {
-      cafeService.update({ id: restaurant.id, body }).then(updateRestaurant);
+      cafeService
+        .update({ body: { ...body, id: restaurant.id } })
+        .then(updateRestaurant);
     },
   });
 
   const handleRemove = () => {
-    cafeService
-      .remove({ id: restaurant.id })
-      .then(() => removeRestaurantFromList(restaurant.id));
+    cafeService.remove({ id: restaurant.id }).then(() => {
+      removeRestaurantFromList(restaurant.id);
+      scrollToView();
+    });
   };
 
   const handleToggleMode = () => {

@@ -1,4 +1,3 @@
-import { cafeData } from 'common/data';
 import { ICafe, ITexts } from 'common/types';
 import { create } from 'zustand';
 
@@ -20,7 +19,7 @@ export interface IAction {
 export const useAdminStore = create<IState & IAction>((set) => ({
   texts: {} as ITexts,
   selectedRestaurant: null,
-  restaurantsList: [cafeData],
+  restaurantsList: [],
   setTexts: (texts) => set(() => ({ texts })),
   setSelectedRestaurant: (restaurant) =>
     set((state) => ({
@@ -30,7 +29,7 @@ export const useAdminStore = create<IState & IAction>((set) => ({
   setRestaurantsList: (restaurantsList) => set(() => ({ restaurantsList })),
   addRestaurantToList: (restaurant) =>
     set((data) => ({
-      restaurantsList: { ...data.restaurantsList, restaurant },
+      restaurantsList: [...data.restaurantsList, restaurant],
     })),
   removeRestaurantFromList: (id) =>
     set((data) => ({

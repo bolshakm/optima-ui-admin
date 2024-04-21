@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, RefObject, useEffect, useMemo, useRef } from 'react';
 import styles from './styles.module.css';
 import { useAdminStore } from 'pages/adminPanel/store';
 import { ICafe } from 'common/types';
@@ -11,11 +11,13 @@ import classNames from 'classnames';
 
 interface IProps {
   restaurant: ICafe;
+  scrollToView: () => void;
 }
 
-export const RestaurantInfo: FC<IProps> = ({ restaurant }) => {
+export const RestaurantInfo: FC<IProps> = ({ restaurant, scrollToView }) => {
   const { setSelectedRestaurant, selectedRestaurant } = useAdminStore();
   const { texts } = useAdminStore();
+  const elementRef: RefObject<HTMLDivElement> | null = useRef(null);
 
   const toggleExpanded = () => {
     setSelectedRestaurant(restaurant);
@@ -26,6 +28,12 @@ export const RestaurantInfo: FC<IProps> = ({ restaurant }) => {
     [selectedRestaurant?.id, restaurant.id]
   );
 
+  useEffect(() => {
+    if (isExpanded && elementRef) {
+      elementRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [isExpanded]);
+
   const navigateToBlock = (key: string) => {
     console.log(key);
   };
@@ -33,7 +41,7 @@ export const RestaurantInfo: FC<IProps> = ({ restaurant }) => {
   if (!restaurant) return <></>;
 
   return (
-    <div className={styles.content}>
+    <div className={styles.content} ref={elementRef}>
       <RestaurantInfoDropdown
         isExpanded={isExpanded}
         setIsExpanded={toggleExpanded}
@@ -43,7 +51,7 @@ export const RestaurantInfo: FC<IProps> = ({ restaurant }) => {
       <div
         className={classNames(styles.inner, { [styles.active]: isExpanded })}
       >
-        <LanguageBlock restaurant={restaurant} />
+        <LanguageBlock restaurant={restaurant} scrollToView={scrollToView} />
         <TimeBlock restaurant={restaurant} />
 
         <SocialBlock restaurant={restaurant} />
