@@ -5,14 +5,13 @@ import classNames from 'classnames';
 
 interface IProps {
   name: string;
-  navigateToBlock: () => void;
   isActive: boolean;
 }
 
-export const ListItem: FC<IProps> = ({ name, navigateToBlock, isActive }) => {
+export const ListItem: FC<IProps> = ({ name, isActive }) => {
   return (
     <li className={styles.item}>
-      <button className={styles.listButton} onClick={navigateToBlock}>
+      <button className={styles.listButton}>
         <div className={styles.left}>
           <span
             className={classNames(styles.dot, { [styles.active]: isActive })}

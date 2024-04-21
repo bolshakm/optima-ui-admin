@@ -7,16 +7,16 @@ import classNames from 'classnames';
 
 interface IProps {
   name: string;
-  navigateToBlock: (key: string) => void;
   isExpanded: boolean;
+  activeBlock: string;
   setIsExpanded: () => void;
 }
 
 export const RestaurantInfoDropdown: FC<IProps> = ({
   name,
-  navigateToBlock,
   isExpanded,
   setIsExpanded,
+  activeBlock,
 }) => {
   const { texts } = useAdminStore();
 
@@ -34,23 +34,19 @@ export const RestaurantInfoDropdown: FC<IProps> = ({
       >
         <ListItem
           name={texts['admin.default.language']}
-          navigateToBlock={() => navigateToBlock('defaultLanguage')}
-          isActive={true}
+          isActive={activeBlock === 'defaultLanguage'}
         />
         <ListItem
           name={texts['admin.working.hours']}
-          navigateToBlock={() => navigateToBlock('workingHours')}
-          isActive={false}
+          isActive={activeBlock === 'workingHours'}
         />
         <ListItem
           name={texts['admin.social.media']}
-          navigateToBlock={() => navigateToBlock('socialMedia')}
-          isActive={false}
+          isActive={activeBlock === 'socialMedia'}
         />
         <ListItem
           name={texts['admin.general.banner']}
-          navigateToBlock={() => navigateToBlock('generalBanner')}
-          isActive={false}
+          isActive={activeBlock === 'generalBanner'}
         />
       </ul>
     </div>

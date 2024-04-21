@@ -47,6 +47,7 @@
 }
 
 .period {
+  cursor: pointer;
   width: 88px;
   padding: 10px;
   height: 40px;

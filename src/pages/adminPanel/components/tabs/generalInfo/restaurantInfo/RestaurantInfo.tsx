@@ -1,4 +1,4 @@
-import React, { FC, RefObject, useEffect, useMemo, useRef } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import styles from './styles.module.css';
 import { useAdminStore } from 'pages/adminPanel/store';
 import { ICafe } from 'common/types';
@@ -16,7 +16,7 @@ interface IProps {
 
 export const RestaurantInfo: FC<IProps> = ({ restaurant }) => {
   const { setSelectedRestaurant, selectedRestaurant } = useAdminStore();
-  const elementRef: RefObject<HTMLDivElement> | null = useRef(null);
+  const [activeBlock, setActiveBlock] = useState('');
 
   const toggleExpanded = () => {
     setSelectedRestaurant(restaurant);
@@ -31,28 +31,37 @@ export const RestaurantInfo: FC<IProps> = ({ restaurant }) => {
     scrollToTop();
   }, [isExpanded]);
 
-  const navigateToBlock = (key: string) => {
-    console.log(key);
+  const handleUpdateActiveBlock = (key: string) => {
+    if (activeBlock !== key) {
+      setActiveBlock(key);
+    }
   };
 
   if (!restaurant) return <></>;
 
   return (
-    <div className={styles.content} ref={elementRef}>
+    <div className={styles.content}>
       <RestaurantInfoDropdown
         isExpanded={isExpanded}
         setIsExpanded={toggleExpanded}
         name={restaurant.name || ''}
-        navigateToBlock={navigateToBlock}
+        activeBlock={activeBlock}
       />
       <div
         className={classNames(styles.inner, { [styles.active]: isExpanded })}
       >
-        <LanguageBlock restaurant={restaurant} />
-        <TimeBlock restaurant={restaurant} />
-
-        <SocialBlock restaurant={restaurant} />
-        <BannerBlock restaurant={restaurant} />
+        <div onClick={() => handleUpdateActiveBlock('defaultLanguage')}>
+          <LanguageBlock restaurant={restaurant} />
+        </div>
+        <div onClick={() => handleUpdateActiveBlock('workingHours')}>
+          <TimeBlock restaurant={restaurant} />
+        </div>
+        <div onClick={() => handleUpdateActiveBlock('socialMedia')}>
+          <SocialBlock restaurant={restaurant} />
+        </div>
+        <div onClick={() => handleUpdateActiveBlock('generalBanner')}>
+          <BannerBlock restaurant={restaurant} />
+        </div>
       </div>
     </div>
   );
