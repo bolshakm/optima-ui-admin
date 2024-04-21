@@ -21,7 +21,12 @@ export const GeneralInfo = () => {
   };
 
   useEffect(() => {
-    cafeService.getMany().then(setRestaurantsList);
+    cafeService
+      .getMany()
+      .then(setRestaurantsList)
+      .catch((err) => {
+        console.log(err);
+      });
     return () => {
       document.body.style.overflow = '';
     };
@@ -41,10 +46,7 @@ export const GeneralInfo = () => {
         />
         <div className={styles.bottom}>
           {restaurantsList.map((restaurant) => (
-            <RestaurantInfo
-              restaurant={restaurant}
-              key={restaurant.id}
-            />
+            <RestaurantInfo restaurant={restaurant} key={restaurant.id} />
           ))}
         </div>
       </div>

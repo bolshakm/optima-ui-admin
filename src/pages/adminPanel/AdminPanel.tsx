@@ -12,7 +12,12 @@ export const AdminPanel = () => {
   const [selectedTab, setSelectedTab] = useState('');
 
   useEffect(() => {
-    localizationService.getLanguagePage({ lang, page: 'admin' }).then(setTexts);
+    localizationService
+      .getLanguagePage({ lang, page: 'admin' })
+      .then(setTexts)
+      .catch((err) => {
+        console.log(err);
+      });
   }, [lang, setTexts]);
 
   return (

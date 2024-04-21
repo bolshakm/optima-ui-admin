@@ -12,7 +12,12 @@ export const LoginPage = () => {
   const { setTexts, texts } = useLoginStore();
 
   useEffect(() => {
-    localizationService.getLanguagePage({ lang, page: 'login' }).then(setTexts);
+    localizationService
+      .getLanguagePage({ lang, page: 'login' })
+      .then(setTexts)
+      .catch((err) => {
+        console.log(err);
+      });
   }, [lang, setTexts]);
 
   return (

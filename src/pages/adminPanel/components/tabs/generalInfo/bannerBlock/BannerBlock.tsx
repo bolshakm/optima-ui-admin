@@ -49,7 +49,12 @@ export const BannerBlock: FC<IProps> = ({ restaurant }) => {
       formData.append('bannerUrl', fileToSend);
       formData.append('id', restaurant.id.toString());
 
-      cafeService.updateBanner({ body: formData }).then(updateRestaurant);
+      cafeService
+        .updateBanner({ body: formData })
+        .then(updateRestaurant)
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       setError(true);
     }

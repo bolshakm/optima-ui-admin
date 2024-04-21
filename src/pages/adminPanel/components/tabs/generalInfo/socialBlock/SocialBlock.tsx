@@ -27,7 +27,12 @@ export const SocialBlock: FC<IProps> = ({ restaurant }) => {
     validateOnMount: true,
     enableReinitialize: true,
     onSubmit: (body) => {
-      cafeService.update({ body: {...body, id: restaurant.id } }).then(updateRestaurant);
+      cafeService
+        .update({ body: { ...body, id: restaurant.id } })
+        .then(updateRestaurant)
+        .catch((err) => {
+          console.log(err);
+        });
     },
   });
 

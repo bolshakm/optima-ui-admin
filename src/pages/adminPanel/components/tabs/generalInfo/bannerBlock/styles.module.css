@@ -7,6 +7,9 @@
   border-radius: 5px;
   height: 150px;
   width: 69%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .area.error {

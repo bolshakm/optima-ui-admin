@@ -32,15 +32,23 @@ export const LanguageBlock: FC<IProps> = ({ restaurant }) => {
     onSubmit: (body) => {
       cafeService
         .update({ body: { ...body, id: restaurant.id } })
-        .then(updateRestaurant);
+        .then(updateRestaurant)
+        .catch((err) => {
+          console.log(err);
+        });
     },
   });
 
   const handleRemove = () => {
-    cafeService.remove({ id: restaurant.id }).then(() => {
-      removeRestaurantFromList(restaurant.id);
-      scrollToTop();
-    });
+    cafeService
+      .remove({ id: restaurant.id })
+      .then(() => {
+        removeRestaurantFromList(restaurant.id);
+        scrollToTop();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleToggleMode = () => {

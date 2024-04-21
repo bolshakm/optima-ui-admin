@@ -20,7 +20,12 @@ export const CreateRestaurant: FC<IProps> = ({ onClose }) => {
       return;
     }
 
-    cafeService.create({ body: { name } }).then(addRestaurantToList);
+    cafeService
+      .create({ body: { name } })
+      .then(addRestaurantToList)
+      .catch((err) => {
+        console.log(err);
+      });
     onClose();
   };
 

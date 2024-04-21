@@ -43,7 +43,10 @@ export const TimeBlock: FC<IProps> = ({ restaurant }) => {
 
     cafeService
       .update({ body: { workingHours: hours, id: restaurant.id } })
-      .then(updateRestaurant);
+      .then(updateRestaurant)
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

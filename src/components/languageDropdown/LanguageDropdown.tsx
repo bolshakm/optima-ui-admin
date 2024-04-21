@@ -39,7 +39,12 @@ export const LanguageDropdown: FC<IProps> = ({
 
   useEffect(() => {
     if (!Object.keys(languages).length) {
-      localizationService.getLanguages().then(setLanguages);
+      localizationService
+        .getLanguages()
+        .then(setLanguages)
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [languages]);
 

@@ -14,7 +14,10 @@ export const RegistrationPage = () => {
   useEffect(() => {
     localizationService
       .getLanguagePage({ lang, page: 'registration' })
-      .then(setTexts);
+      .then(setTexts)
+      .catch((err) => {
+        console.log(err);
+      });
   }, [lang, setTexts]);
 
   return (
