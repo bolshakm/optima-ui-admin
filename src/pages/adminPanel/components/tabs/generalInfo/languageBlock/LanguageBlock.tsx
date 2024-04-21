@@ -9,13 +9,13 @@ import { cafeService } from 'services/cafeService';
 import classNames from 'classnames';
 import { useFormik } from 'formik';
 import { createSchema } from 'pages/adminPanel/shcemas';
+import { scrollToTop } from 'common/utils';
 
 interface IProps {
   restaurant: ICafe;
-  scrollToView: () => void;
 }
 
-export const LanguageBlock: FC<IProps> = ({ restaurant, scrollToView }) => {
+export const LanguageBlock: FC<IProps> = ({ restaurant }) => {
   const { texts, updateRestaurant, removeRestaurantFromList } = useAdminStore();
   const [editMode, setEditMode] = useState(false);
 
@@ -39,7 +39,7 @@ export const LanguageBlock: FC<IProps> = ({ restaurant, scrollToView }) => {
   const handleRemove = () => {
     cafeService.remove({ id: restaurant.id }).then(() => {
       removeRestaurantFromList(restaurant.id);
-      scrollToView();
+      scrollToTop();
     });
   };
 

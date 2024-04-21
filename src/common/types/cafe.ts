@@ -25,3 +25,8 @@ export interface ICreateCafeDto extends Partial<ICafe> {
 export interface IUpdateCafeDto extends Partial<ICafe> {
   id: number;
 }
+
+export interface IUpdateCafeBannerDto {
+  id: number;
+  bannerUrl?: File;
+}

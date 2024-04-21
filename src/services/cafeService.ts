@@ -1,7 +1,12 @@
 import { backendAdminKeys } from 'common/constants';
 import BaseService from './baseService';
 import instanse from './axios/instanse';
-import { ICafe, ICreateCafeDto, IUpdateCafeDto } from 'common/types';
+import {
+  ICafe,
+  ICreateCafeDto,
+  IUpdateCafeBannerDto,
+  IUpdateCafeDto,
+} from 'common/types';
 
 class CafeService extends BaseService {
   constructor(
@@ -33,13 +38,23 @@ class CafeService extends BaseService {
     );
   }
 
-  async update({
-    body,
-  }: {
-    body: IUpdateCafeDto;
-  }): Promise<ICafe> {
+  async update({ body }: { body: IUpdateCafeDto }): Promise<ICafe> {
     return this.handleRequest<ICafe>(
       this.fetchingService.put(this.baseUrl, body)
+    );
+  }
+
+  async updateBanner({
+    body,
+  }: {
+    body: FormData & IUpdateCafeBannerDto;
+  }): Promise<ICafe> {
+    return this.handleRequest<ICafe>(
+      this.fetchingService.put(this.baseUrl, body, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
     );
   }
 }

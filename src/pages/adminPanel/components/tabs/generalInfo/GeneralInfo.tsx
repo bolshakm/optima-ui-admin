@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
 import { useAdminStore } from 'pages/adminPanel/store';
 import { AddButton } from '../../addButton';
@@ -9,7 +9,6 @@ import { cafeService } from 'services/cafeService';
 export const GeneralInfo = () => {
   const { texts, restaurantsList, setRestaurantsList } = useAdminStore();
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const buttonRef = useRef<HTMLDivElement>(null);
 
   const handleToggleModal = () => {
     if (isOpenModal) {
@@ -28,10 +27,6 @@ export const GeneralInfo = () => {
     };
   }, []);
 
-  const scrollToView = () => {
-    buttonRef?.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <div className='info'>
       {isOpenModal && (
@@ -39,7 +34,7 @@ export const GeneralInfo = () => {
           <CreateRestaurant onClose={handleToggleModal} />
         </ModalTemplate>
       )}
-      <div className={styles.content} ref={buttonRef}>
+      <div className={styles.content}>
         <AddButton
           text={texts['admin.add.restaurant']}
           craeteCallback={handleToggleModal}
@@ -49,7 +44,6 @@ export const GeneralInfo = () => {
             <RestaurantInfo
               restaurant={restaurant}
               key={restaurant.id}
-              scrollToView={scrollToView}
             />
           ))}
         </div>

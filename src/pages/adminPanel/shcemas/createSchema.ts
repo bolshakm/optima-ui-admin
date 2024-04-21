@@ -2,13 +2,18 @@ import * as yup from 'yup';
 
 export const createSchema = yup.object().shape({
   name: yup.string().required(),
+});
+
+
+export const updateSchema = yup.object().shape({
+  name: yup.string(),
   workingHours: yup.array().of(
     yup.object().shape({
       day: yup.string(),
       time: yup.string(),
     })
   ),
-  defLang: yup.string().required(),
+  defLang: yup.string(),
   facebook: yup.string().url(),
   instagram: yup.string().url(),
   tripAdvisor: yup.string().url(),
@@ -18,8 +23,8 @@ export const createSchema = yup.object().shape({
 });
 
 export const languageSchema = yup.object().shape({
-  name: yup.string().required(),
-  defLang: yup.string().required(),
+  name: yup.string(),
+  defLang: yup.string(),
 });
 
 

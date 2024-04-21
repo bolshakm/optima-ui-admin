@@ -1,0 +1,38 @@
+.area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #00000054;
+  border-radius: 5px;
+  height: 150px;
+  width: 69%;
+}
+
+.area.error {
+  border-color: #fb0505b2;
+}
+
+.inner {
+  padding: 10px;
+  background-color: #ffffffcb;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.area span {
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.button {
+  border: 1px solid #8befca;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  margin-bottom: 22px;
+  min-width: 115px;
+  width: max-content;
+}

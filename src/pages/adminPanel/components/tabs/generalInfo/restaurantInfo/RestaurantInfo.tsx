@@ -3,20 +3,19 @@ import styles from './styles.module.css';
 import { useAdminStore } from 'pages/adminPanel/store';
 import { ICafe } from 'common/types';
 import { RestaurantInfoDropdown } from '../restaurantInfoDropdown';
-import { InfoBlock } from '../infoBlock';
 import { LanguageBlock } from '../languageBlock';
 import { SocialBlock } from '../socialBlock';
 import { TimeBlock } from '../timeBlock';
 import classNames from 'classnames';
+import { scrollToTop } from 'common/utils';
+import { BannerBlock } from '../bannerBlock';
 
 interface IProps {
   restaurant: ICafe;
-  scrollToView: () => void;
 }
 
-export const RestaurantInfo: FC<IProps> = ({ restaurant, scrollToView }) => {
+export const RestaurantInfo: FC<IProps> = ({ restaurant }) => {
   const { setSelectedRestaurant, selectedRestaurant } = useAdminStore();
-  const { texts } = useAdminStore();
   const elementRef: RefObject<HTMLDivElement> | null = useRef(null);
 
   const toggleExpanded = () => {
@@ -29,9 +28,7 @@ export const RestaurantInfo: FC<IProps> = ({ restaurant, scrollToView }) => {
   );
 
   useEffect(() => {
-    if (isExpanded && elementRef) {
-      elementRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }
+    scrollToTop();
   }, [isExpanded]);
 
   const navigateToBlock = (key: string) => {
@@ -51,16 +48,11 @@ export const RestaurantInfo: FC<IProps> = ({ restaurant, scrollToView }) => {
       <div
         className={classNames(styles.inner, { [styles.active]: isExpanded })}
       >
-        <LanguageBlock restaurant={restaurant} scrollToView={scrollToView} />
+        <LanguageBlock restaurant={restaurant} />
         <TimeBlock restaurant={restaurant} />
 
         <SocialBlock restaurant={restaurant} />
-        <InfoBlock
-          title={texts['admin.general.banner']}
-          handleSubmit={() => {}}
-        >
-          <></>
-        </InfoBlock>
+        <BannerBlock restaurant={restaurant} />
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { useFormik } from 'formik';
 import { InfoBlock } from '../infoBlock';
 import { useAdminStore } from 'pages/adminPanel/store';
-import { createSchema } from 'pages/adminPanel/shcemas';
+import { updateSchema } from 'pages/adminPanel/shcemas';
 import { cafeService } from 'services/cafeService';
 
 interface IProps {
@@ -21,7 +21,7 @@ export const SocialBlock: FC<IProps> = ({ restaurant }) => {
       instagram: restaurant.instagram || '',
       tripAdvisor: restaurant.tripAdvisor || '',
     },
-    validationSchema: createSchema,
+    validationSchema: updateSchema,
     validateOnBlur: true,
     validateOnChange: true,
     validateOnMount: true,

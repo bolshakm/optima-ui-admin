@@ -16,7 +16,7 @@ export const AdminPanel = () => {
   }, [lang, setTexts]);
 
   return (
-    <div className={styles.page}>
+    <>
       <PageHeader />
       <div className={styles.content}>
         <div className={styles.sidebar}>
@@ -26,6 +26,6 @@ export const AdminPanel = () => {
           <TabsContent selectedTab={selectedTab} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
