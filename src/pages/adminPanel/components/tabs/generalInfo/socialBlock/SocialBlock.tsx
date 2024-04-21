@@ -7,6 +7,9 @@ import { InfoBlock } from '../infoBlock';
 import { useAdminStore } from 'pages/adminPanel/store';
 import { updateSchema } from 'pages/adminPanel/shcemas';
 import { cafeService } from 'services/cafeService';
+import toast, { Toaster } from 'react-hot-toast';
+import { toastSettings } from 'common/data/toastSettings';
+import { useLanguageStore } from 'store';
 
 interface IProps {
   restaurant: ICafe;
@@ -14,6 +17,7 @@ interface IProps {
 
 export const SocialBlock: FC<IProps> = ({ restaurant }) => {
   const { texts, updateRestaurant } = useAdminStore();
+  const { errorText } = useLanguageStore();
 
   const { values, touched, errors, handleChange, handleSubmit } = useFormik({
     initialValues: {
@@ -31,6 +35,7 @@ export const SocialBlock: FC<IProps> = ({ restaurant }) => {
         .update({ body: { ...body, id: restaurant.id } })
         .then(updateRestaurant)
         .catch((err) => {
+          toast.error(errorText);
           console.log(err);
         });
     },
@@ -38,6 +43,7 @@ export const SocialBlock: FC<IProps> = ({ restaurant }) => {
 
   return (
     <InfoBlock title={texts['admin.social.media']} handleSubmit={handleSubmit}>
+      <Toaster toastOptions={{ ...toastSettings }} />
       <div className={styles.block}>
         <label className={styles.label}>
           <span className={styles.text}>Instagram</span>

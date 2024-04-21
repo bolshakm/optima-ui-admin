@@ -1,8 +1,10 @@
 import { LanguageLow } from 'common/types';
+import { generateErrorText } from 'common/utils';
 import { create } from 'zustand';
 
 export interface IState {
   currentLang: LanguageLow;
+  errorText: string;
 }
 
 export interface IAction {
@@ -11,5 +13,7 @@ export interface IAction {
 
 export const useLanguageStore = create<IState & IAction>((set) => ({
   currentLang: 'en',
-  setCurrentLang: (key) => set(() => ({ currentLang: key })),
+  errorText: generateErrorText('en'),
+  setCurrentLang: (key) =>
+    set(() => ({ currentLang: key, errorText: generateErrorText(key) })),
 }));

@@ -7,10 +7,15 @@ import { loginSchema } from '../../shcemas';
 import { authService } from 'services';
 import { useNavigate } from 'react-router-dom';
 import { routerKeys, storageKeys } from 'common/constants';
+import toast, { Toaster } from 'react-hot-toast';
+import { toastSettings } from 'common/data/toastSettings';
+import { useLanguageStore } from 'store';
 
 export const PageContent = () => {
   const navigate = useNavigate();
   const { texts } = useLoginStore();
+  const { errorText } = useLanguageStore();
+
 
   const { values, touched, errors, handleChange, handleSubmit } = useFormik({
     initialValues: {
@@ -31,6 +36,7 @@ export const PageContent = () => {
         })
         .catch((err) => {
           console.log(err);
+          toast.error(errorText);
         });
     },
   });
@@ -77,6 +83,7 @@ export const PageContent = () => {
           </form>
         </AuthContent>
       </div>
+      <Toaster toastOptions={{ ...toastSettings }} />
     </div>
   );
 };

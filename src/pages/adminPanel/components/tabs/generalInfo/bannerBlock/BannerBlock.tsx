@@ -7,6 +7,9 @@ import { InfoBlock } from '../infoBlock';
 import { Button } from 'components';
 import { cafeService } from 'services/cafeService';
 import classNames from 'classnames';
+import toast, { Toaster } from 'react-hot-toast';
+import { toastSettings } from 'common/data/toastSettings';
+import { useLanguageStore } from 'store';
 
 interface IProps {
   restaurant: ICafe;
@@ -14,6 +17,7 @@ interface IProps {
 
 export const BannerBlock: FC<IProps> = ({ restaurant }) => {
   const { texts, updateRestaurant } = useAdminStore();
+  const { errorText } = useLanguageStore();
   const [fileToSend, setFileToSend] = useState<File | null>(null);
   const [error, setError] = useState(false);
   const [uploadedImage, setUploadedImage] = useState<string | null>(
@@ -54,6 +58,7 @@ export const BannerBlock: FC<IProps> = ({ restaurant }) => {
         .then(updateRestaurant)
         .catch((err) => {
           console.log(err);
+          toast.error(errorText);
         });
     } else {
       setError(true);
@@ -66,6 +71,7 @@ export const BannerBlock: FC<IProps> = ({ restaurant }) => {
       className={styles.language}
       handleSubmit={handleSubmit}
     >
+      <Toaster toastOptions={{ ...toastSettings }} />
       <div
         {...getRootProps()}
         className={classNames(styles.area, { [styles.error]: error })}

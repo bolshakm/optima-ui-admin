@@ -8,10 +8,14 @@ import { authService } from 'services';
 import { useNavigate } from 'react-router-dom';
 import { routerKeys, storageKeys } from 'common/constants';
 import { InputPhone } from 'components/input/PhoneInput';
+import toast, { Toaster } from 'react-hot-toast';
+import { toastSettings } from 'common/data/toastSettings';
+import { useLanguageStore } from 'store';
 
 export const PageContent = () => {
   const navigate = useNavigate();
   const { texts } = useRegistrationStore();
+  const { errorText } = useLanguageStore();
 
   const { values, touched, errors, handleChange, handleSubmit, setFieldValue } =
     useFormik({
@@ -37,6 +41,7 @@ export const PageContent = () => {
           })
           .catch((err) => {
             console.log(err);
+            toast.error(errorText);
           });
       },
     });
@@ -47,6 +52,7 @@ export const PageContent = () => {
 
   return (
     <div className={styles.content}>
+      <Toaster toastOptions={{ ...toastSettings }} />
       <div className='container'>
         <AuthContent title={texts['registration.create.an.account']}>
           <form className={styles.form} onSubmit={handleSubmit}>

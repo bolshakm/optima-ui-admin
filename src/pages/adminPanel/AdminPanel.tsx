@@ -8,7 +8,7 @@ import { TabsContent } from './components/tabs';
 
 export const AdminPanel = () => {
   const { currentLang: lang } = useLanguageStore();
-  const { setTexts } = useAdminStore();
+  const { setTexts, texts } = useAdminStore();
   const [selectedTab, setSelectedTab] = useState('');
 
   useEffect(() => {
@@ -31,6 +31,7 @@ export const AdminPanel = () => {
           <TabsContent selectedTab={selectedTab} />
         </div>
       </div>
+      <button className={styles.help}>{texts['admin.need.help'] || 'Need help?'}</button>
     </>
   );
 };

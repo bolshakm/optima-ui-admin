@@ -6,6 +6,9 @@ import { InfoBlock } from '../infoBlock';
 import { weekDays } from 'common/data';
 import { Row } from './Row';
 import { cafeService } from 'services/cafeService';
+import toast, { Toaster } from 'react-hot-toast';
+import { toastSettings } from 'common/data/toastSettings';
+import { useLanguageStore } from 'store';
 
 interface IProps {
   restaurant: ICafe;
@@ -14,6 +17,7 @@ interface IProps {
 export const TimeBlock: FC<IProps> = ({ restaurant }) => {
   const { texts, updateRestaurant } = useAdminStore();
   const [workingHours, setWorkingHours] = useState(weekDays);
+  const { errorText } = useLanguageStore();
 
   useEffect(() => {
     const existPeriods = restaurant.workingHours?.reduce((acc, day) => {
@@ -46,11 +50,13 @@ export const TimeBlock: FC<IProps> = ({ restaurant }) => {
       .then(updateRestaurant)
       .catch((err) => {
         console.log(err);
+        toast.error(errorText);
       });
   };
 
   return (
     <InfoBlock title={texts['admin.working.hours']} handleSubmit={handleSubmit}>
+      <Toaster toastOptions={{ ...toastSettings }} />
       <div className={styles.block}>
         <Row
           workingHours={workingHours}

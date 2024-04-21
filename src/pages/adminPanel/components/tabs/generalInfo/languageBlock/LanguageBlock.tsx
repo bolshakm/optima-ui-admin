@@ -10,6 +10,9 @@ import classNames from 'classnames';
 import { useFormik } from 'formik';
 import { createSchema } from 'pages/adminPanel/shcemas';
 import { scrollToTop } from 'common/utils';
+import toast, { Toaster } from 'react-hot-toast';
+import { toastSettings } from 'common/data/toastSettings';
+import { useLanguageStore } from 'store';
 
 interface IProps {
   restaurant: ICafe;
@@ -17,6 +20,7 @@ interface IProps {
 
 export const LanguageBlock: FC<IProps> = ({ restaurant }) => {
   const { texts, updateRestaurant, removeRestaurantFromList } = useAdminStore();
+  const { errorText } = useLanguageStore();
   const [editMode, setEditMode] = useState(false);
 
   const { values, touched, errors, handleChange, handleSubmit } = useFormik({
@@ -35,6 +39,7 @@ export const LanguageBlock: FC<IProps> = ({ restaurant }) => {
         .then(updateRestaurant)
         .catch((err) => {
           console.log(err);
+          toast.error(errorText);
         });
     },
   });
@@ -48,6 +53,7 @@ export const LanguageBlock: FC<IProps> = ({ restaurant }) => {
       })
       .catch((err) => {
         console.log(err);
+        toast.error(errorText);
       });
   };
 
@@ -62,6 +68,7 @@ export const LanguageBlock: FC<IProps> = ({ restaurant }) => {
 
   return (
     <div className={styles.block}>
+      <Toaster toastOptions={{ ...toastSettings }} />;
       <div className={styles.header}>
         <div className={styles.left}>
           {editMode ? (
