@@ -1,6 +1,7 @@
 export const backendKeys = {
-  // root: 'http://15.237.52.102:8081/api/v1/admin',
-  root: 'https://optima-uat.com/api/v1/admin',
+  // root: 'http://localhost:8080/api/v1/admin',
+  // root: 'http://13.38.36.12:8081/api/v1/admin',
+  root: 'https://qrcoddy.com/api/v1/admin',
   text: '/text',
   page: '/page',
   languages: '/languages',
